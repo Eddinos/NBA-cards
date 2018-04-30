@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="Card">
-    Cado {{players.all[0].name}}
+    Cado
   </div>
 </template>
 

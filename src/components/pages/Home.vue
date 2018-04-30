@@ -16,6 +16,9 @@ export default {
   },
   components: {
     Card
+  },
+  created () {
+    this.$store.dispatch('getAllPlayers')
   }
 }
 </script>
