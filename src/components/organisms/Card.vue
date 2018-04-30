@@ -1,12 +1,16 @@
 <template lang="html">
   <div class="Card">
-    Cado
+    Cado {{players.all[0].name}}
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
-  name: 'Card'
+  name: 'Card',
+  computed: {
+    ...mapState(['players'])
+  }
 }
 </script>
 
