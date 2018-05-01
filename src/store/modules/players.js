@@ -5,8 +5,8 @@ const state = {
 }
 
 const actions = {
-  getAllPlayers({ commit }) {
-    playerAPI.getNames()
+  getAllPlayers({ commit }, variables) {
+    playerAPI.getNames(variables)
       .then(players => commit('setPlayers', players))
   }
 }

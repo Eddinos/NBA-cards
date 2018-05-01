@@ -18,7 +18,7 @@ export default {
     Card
   },
   created () {
-    this.$store.dispatch('getAllPlayers')
+    this.$store.dispatch('getAllPlayers', {jersey: '23', fullName: 'bron'})
     this.$store.dispatch('getAllTeams')
   }
 }
