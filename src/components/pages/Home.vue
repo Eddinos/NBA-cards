@@ -19,6 +19,7 @@ export default {
   },
   created () {
     this.$store.dispatch('getAllPlayers')
+    this.$store.dispatch('getAllTeams')
   }
 }
 </script>
