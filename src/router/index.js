@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/pages/Home'
+import Profile from '@/components/pages/Profile'
 
 Vue.use(Router)
 
@@ -10,6 +11,12 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/profile/:fullName',
+      name: 'Profile',
+      component: Profile,
+      props: true
     }
   ],
   mode: 'history'

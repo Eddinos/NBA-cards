@@ -46,7 +46,7 @@ export default {
   },
   created () {
     // this.$store.dispatch('getAllPlayers', {jersey: '23', fullName: 'bron'})
-    this.$store.dispatch('getAllPlayers')
+    this.getAllPlayers();
   }
 }
 </script>

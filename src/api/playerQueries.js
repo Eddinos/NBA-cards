@@ -5,5 +5,20 @@ export default {
       isAllStar
       jersey
     }
-  }`
+  }`,
+  profile: `query ($fullName: String, $language: String) {
+    player(fullName: $fullName) {
+      jersey
+      img
+      isAllStar
+      position
+      height(language: $language)
+      weight(language: $language)
+      team {
+        fullName
+      }
+    }
+  }
+
+  `
 }

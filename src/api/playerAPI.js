@@ -3,15 +3,22 @@ const playerEndpoint = 'http://localhost:3000/player'
 const client = new GraphQLClient(playerEndpoint)
 import queries from './playerQueries.js'
 
-const getNames = (variables) => {
-  return client.request(queries.list, variables)
+const fetchPlayerData = query => variables => {
+  return client.request(query, variables)
     .then(keepPlayerData)
-    .catch(handleError)
+    // .catch(handleError)
 }
 
+const getNames = fetchPlayerData(queries.list)
+
+const getProfile = fetchPlayerData(queries.profile)
+
 export default {
-  getNames
+  getNames,
+  getProfile
 }
+
+
 
 const toJSON = res => (res.json())
 const keepPlayerData = data => (data.player)
