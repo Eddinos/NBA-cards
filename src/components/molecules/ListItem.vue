@@ -36,12 +36,6 @@ export default {
   height: 5em;
   overflow: hidden;
   position: relative;
-  &:nth-child(odd) {
-    background-color: #CCC;
-  }
-  &:nth-child(even) {
-    background-color: #EEE;
-  }
 }
 .jersey {
   position: absolute;

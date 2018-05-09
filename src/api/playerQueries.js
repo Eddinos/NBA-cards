@@ -18,7 +18,11 @@ export default {
         fullName
       }
     }
-  }
-
-  `
+  }`,
+  measures: `query ($fullName: String, $language: String) {
+    player(fullName: $fullName) {
+      height(language: $language)
+      weight(language: $language)
+    }
+  }`
 }

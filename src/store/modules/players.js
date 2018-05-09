@@ -14,6 +14,11 @@ const actions = {
     return playerAPI.getProfile(variables)
       .then(profiles => profiles[0])
       .then(profile => commit('setCurrentProfile', profile))
+  },
+  getMeasures({ commit }, variables) {
+    return playerAPI.getMeasures(variables)
+      .then(profiles => profiles[0])
+      .then(profile => commit('updateCurrentProfile', profile))
   }
 }
 
@@ -23,6 +28,9 @@ const mutations = {
   },
   setCurrentProfile (state, profile) {
     state.currentProfile = profile
+  },
+  updateCurrentProfile (state, profile) {
+    state.currentProfile = Object.assign(state.currentProfile, profile)
   }
 }
 

@@ -13,9 +13,12 @@ const getNames = fetchPlayerData(queries.list)
 
 const getProfile = fetchPlayerData(queries.profile)
 
+const getMeasures = fetchPlayerData(queries.measures)
+
 export default {
   getNames,
-  getProfile
+  getProfile,
+  getMeasures
 }
 
 

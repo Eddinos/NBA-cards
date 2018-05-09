@@ -4,14 +4,18 @@
     <input type="text" placeholder="search player"
     @input="handleSearch" v-model="searchInput">
     <ul>
-      <li
-      is="ListItem"
-       v-for="(player, index) in allPlayers"
-       :key="player.fullName"
-       :item-name="player.fullName"
-       :item-number="player.jersey"
-       >
+      <router-link v-for="(player, index) in allPlayers"
+      :to="{ name: 'Profile', params: {fullName: player.fullName} }"
+      :key="player.fullName"
+      class="profileLink">
+        <li
+        class="Home__ListItem"
+        is="ListItem"
+         :item-name="player.fullName"
+         :item-number="player.jersey"
+         >
        </li>
+     </router-link>
     </ul>
   </div>
 </template>
@@ -53,6 +57,18 @@ export default {
 
 <style lang="scss" scoped>
   .Home {
-
+    .profileLink {
+      text-decoration: none;
+      color: inherit;
+      &:nth-child(odd) {
+        background-color: #CCC;
+      }
+      &:nth-child(even) {
+        background-color: #EEE;
+      }
+    }
+    &__ListItem {
+      background-color: inherit;
+    }
   }
 </style>
