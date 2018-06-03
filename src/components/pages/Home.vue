@@ -1,5 +1,9 @@
 <template>
   <div class="Home">
+
+    <Panel class="Home__panel" title="Players" side="right"/>
+    <Panel class="Home__panel" title="Teams" side="left"/>
+
     <input type="text" class="searchBar" placeholder="search player"
     @input="handleSearch" v-model="searchInput" @keyup.enter="submit">
     <ul class="playerList">
@@ -23,6 +27,7 @@
 <script>
 import Card from '@/components/organisms/Card'
 import ListItem from '@/components/molecules/ListItem'
+import Panel from '@/components/molecules/Panel'
 import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'Home',
@@ -53,7 +58,8 @@ export default {
   },
   components: {
     Card,
-    ListItem
+    ListItem,
+    Panel
   }
 }
 </script>
@@ -79,6 +85,11 @@ export default {
     .playerList {
       padding-left: 5%;
       max-width: 90%;
+    }
+
+    &__panel {
+      width: 96%;
+      margin: 3px auto;
     }
   }
 </style>
