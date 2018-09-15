@@ -20,8 +20,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  overflow: hidden;
+  overflow-y: scroll;
   height: 100vh;
+  background: linear-gradient(60deg,#e8e7ef,#dbdae9);
   /* background-color: #3A3A3A; */
 }
 </style>

@@ -5,7 +5,7 @@
     <ul class="list">
       <router-link v-for="(player, index) in allPlayers"
       :to="{ name: 'Profile', params: {fullName: player.fullName} }"
-      :key="player.fullName"
+      :key="player.fullName + player.jersey"
       class="profileLink">
         <li
           class="PLayerList__ListItem"
@@ -24,7 +24,7 @@
 import ListItem from '@/components/molecules/ListItem'
 import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
-  name: 'BrowsingList',
+  name: 'PLayerList',
   data () {
     return {
       searchInput: ''
@@ -56,7 +56,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped="true">
 .PLayerList {
   .profileLink {
     text-decoration: none;
