@@ -1,16 +1,19 @@
-const getNames = () => {
-  return fetch(`${teamQueryURL}{team{fullName}}`)
-  .then(toJSON)
-  .then(keepTeamData)
-  .catch(handleError)
+import { GraphQLClient } from 'graphql-request'
+const teamEndpoint = 'http://localhost:3000/team'
+const client = new GraphQLClient(teamEndpoint)
+import queries from './teamQueries.js'
+
+const fetchTeamData = query => variables => {
+  return client.request(query, variables)
+    .then(keepTeamData)
 }
+
+const getNames = fetchTeamData(queries.names);
 
 export default {
   getNames
 }
 
 const toJSON = res => (res.json())
-const keepTeamData = res => (res.data.team)
+const keepTeamData = res => (res.team)
 const handleError = err => console.log('not working, do something', err)
-
-const teamQueryURL = 'http://localhost:3000/team?query='

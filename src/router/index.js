@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/pages/Home'
 import PLayerList from '@/components/pages/PLayerList'
 import Profile from '@/components/pages/Profile'
+import TeamList from '@/components/pages/TeamList.vue'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ export default new Router({
       name: 'Profile',
       component: Profile,
       props: true
+    },
+    {
+      path: '/teams',
+      name: 'TeamList',
+      component: TeamList
     }
   ],
   mode: 'history'

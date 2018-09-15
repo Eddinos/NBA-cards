@@ -1,4 +1,4 @@
-import teamAPI from '@/api/teamAPI'
+import teamAPI from '../../api/teamAPI'
 
 const state = {
   all: []
