@@ -56,7 +56,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped="true">
+<style lang="scss">
+@import "@/scss/vars.scss";
 .PLayerList {
   .profileLink {
     text-decoration: none;
@@ -70,9 +71,6 @@ export default {
   }
   &__ListItem {
     background-color: inherit;
-  }
-  .searchBar {
-    font-size: 1.5em;
   }
   .list {
     padding-left: 5%;
