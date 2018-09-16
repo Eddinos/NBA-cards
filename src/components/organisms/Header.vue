@@ -15,7 +15,7 @@ export default {
   .Header {
     width: 100%;
     height: 50px;
-    background: linear-gradient(25deg, #666, #252525);
+    background: linear-gradient(25deg, #696969, #252525);
     display: flex;
 
     &__home {

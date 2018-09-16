@@ -16,6 +16,7 @@ export default {
       weight(language: $language)
       team {
         fullName
+        tricode
       }
     }
   }`,

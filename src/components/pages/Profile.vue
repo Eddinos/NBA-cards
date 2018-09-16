@@ -11,19 +11,23 @@
     </div>
     <div class="profile" v-if="!loading && !errorMsg && profile">
       <div class="settings">
-        <span @click="changeSets('en-US')">Imp</span>
-        <span @click="changeSets('row')">Metric</span>
+        <div class="units">
+          <span @click="changeSets('en-US')" :class="{active: this.preferedLanguage === 'en-US'}">Imp</span>
+          <span @click="changeSets('row')" :class="{active: this.preferedLanguage !== 'en-US'}">Metric</span>
+        </div>
       </div>
       <div class="profile__fullName">
         {{fullName}}
       </div>
       <img class="profile__photo" :src="profile.img" :alt="fullName">
       <div class="profile__info">
-        <span>Jersey number: {{profile.jersey}}</span><br>
-        <span>position: {{profile.position}}</span><br>
-        <span>height ({{units.heightUnit}}): {{profile.height}}</span><br>
-        <span>weight ({{units.weightUnit}}): {{profile.weight}}</span><br>
-        <span>team: {{profile.team.fullName}}</span><br>
+        <span># {{profile.jersey}}</span><br>
+        <span>Position: {{profile.position}}</span><br>
+        <span>Height ({{units.heightUnit}}): {{profile.height}}</span><br>
+        <span>Weight ({{units.weightUnit}}): {{profile.weight}}</span><br>
+<router-link :to="{ name: 'TeamProfile', params: {tricode: profile.team.tricode} }">
+        <span>Team: {{profile.team.fullName}}</span>
+        </router-link><br>
       </div>
     </div>
   </div>
@@ -89,12 +93,81 @@ export default {
 
 <style lang="scss">
 .profile {
+  margin: 4%;
+  border-style: outset;
+  background-color: #f8f8f8;
+
   &__fullName {
     font-size: 2em;
     font-weight: bold;
   }
-  &__photo{
+  &__photo {
+    border-bottom: 1px #676767 solid;
+  }
 
+  &__info {
+    font-size: 1.2em;
+  }
+
+  .settings {
+    .units {
+      width: 139px;
+
+      span {
+        background: #aaa;
+        position: relative;
+        display: inline-block;
+        position: relative;
+        font-size: 1.2em;
+      }
+
+      span.active {
+        background-color: #202020;
+        color: #eee;
+      }
+
+      span:first-child {
+        z-index: 1;
+        padding-right: 16px;
+        padding-left: 4px;
+        &::after {
+          content: '';
+          position: absolute;
+          transform: skewX(-25deg);
+          height: 24px;
+          width: 16px;
+          display: block;
+          top: 0;
+          right: 0;
+          background-color: inherit;
+          transform-origin: 0 100%;
+          z-index: 0;
+        }
+      }
+
+      span:not(:first-child) {
+        display: inline-block;
+        position: relative;
+        z-index: 0;
+        font-size: 1.2em;
+        padding-left: 14px;
+        padding-right: 2px;
+
+        &::after {
+          content: '';
+          position: absolute;
+          transform: skewX(-25deg);
+          height: 24px;
+          width: 12px;
+          display: block;
+          top: 0;
+          left: -4px;
+          background-color: inherit;
+          transform-origin: 0 100%;
+          z-index: 0;
+        }
+      }
+    }
   }
 }
 </style>
