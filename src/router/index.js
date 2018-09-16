@@ -4,6 +4,7 @@ import Home from '@/components/pages/Home'
 import PLayerList from '@/components/pages/PLayerList'
 import Profile from '@/components/pages/Profile'
 import TeamList from '@/components/pages/TeamList.vue'
+import TeamProfile from '@/components/pages/TeamProfile.vue'
 
 Vue.use(Router)
 
@@ -29,6 +30,12 @@ export default new Router({
       path: '/teams',
       name: 'TeamList',
       component: TeamList
+    },
+    {
+      path: '/teamProfile/:tricode',
+      name: 'TeamProfile',
+      component: TeamProfile,
+      props: true
     }
   ],
   mode: 'history'

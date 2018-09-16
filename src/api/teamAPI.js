@@ -10,8 +10,11 @@ const fetchTeamData = query => variables => {
 
 const getNames = fetchTeamData(queries.names);
 
+const getProfile = fetchTeamData(queries.profile)
+
 export default {
-  getNames
+  getNames,
+  getProfile
 }
 
 const toJSON = res => (res.json())

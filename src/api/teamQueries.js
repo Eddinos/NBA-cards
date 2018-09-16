@@ -5,5 +5,14 @@ export default {
       tricode
       conference
     }
+  }`,
+  profile: `query ($tricode: String) {
+      team(tricode: $tricode) {
+      fullName
+      tricode
+      conference
+      city
+      division
+    }
   }`
 }
