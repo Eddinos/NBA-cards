@@ -3,14 +3,14 @@
     <input type="text" class="searchBar" placeholder="search team"
     v-model="searchInput">
     <ul class="TeamList__list">
+      <router-link v-for="(team, index) in filteredTeams"
+      :to="{ name: 'TeamProfile', params: {tricode: team.tricode} }" :key="index + team.fullName">
       <li class="TeamList__ListItem" :class="{ eastern: team.conference === 'Eastern' }"
           is="ListItem"
           :item-name="team.fullName"
           item-number=""
-          :key="index + team.fullName"
-
-          v-for="(team, index) in filteredTeams"
       ></li>
+    </router-link>
     </ul>
   </div>
 </template>
@@ -51,6 +51,10 @@ export default {
 <style lang="scss" scoped="true">
 @import '@/scss/vars.scss';
 .TeamList {
+
+  a {
+    text-decoration: none;
+  }
 
   &__list {
     padding: 5%;

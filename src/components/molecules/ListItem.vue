@@ -62,7 +62,7 @@ export default {
   top: 50%;
   transform: translateY(-50%);
   left: 10%;
-  font-size: 2em;
+  font-size: 1.9em;
   font-weight: bold;
   max-width: 85%
 }

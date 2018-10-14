@@ -11,10 +11,16 @@
     </div>
     <div class="profile" v-if="!loading && !errorMsg && profile">
       <div class="settings">
-        <div class="units">
+        <div class="can-toggle">
+          <input id="a" type="checkbox" v-model="chosenUnits">
+          <label for="a">
+            <div class="can-toggle__switch" data-checked="Imp" data-unchecked="Metric"></div>
+          </label>
+        </div>
+        <!-- <div class="units">
           <span @click="changeSets('en-US')" :class="{active: this.preferedLanguage === 'en-US'}">Imp</span>
           <span @click="changeSets('row')" :class="{active: this.preferedLanguage !== 'en-US'}">Metric</span>
-        </div>
+        </div> -->
       </div>
       <div class="profile__fullName">
         {{fullName}}
@@ -45,7 +51,8 @@ export default {
   data () {
     return {
       loading: false,
-      errorMsg: ''
+      errorMsg: '',
+      unitsValue: false
     }
   },
   methods: {
@@ -77,6 +84,16 @@ export default {
       let weightUnit = this.preferedLanguage === 'en-US' ? 'lb' : 'kg'
       return { heightUnit, weightUnit }
     },
+    chosenUnits: {
+      get () {
+        return this.preferedLanguage === 'en-US';
+      },
+      set (value) {
+        this.unitsValue = value;
+        let languageCode = value ? 'en-US' : 'eu';
+        this.changeSets(languageCode);
+      }
+    },
     ...mapState({
       preferedLanguage: state => state.settings.preferedLanguage,
       profile: state => state.players.currentProfile
@@ -92,6 +109,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/scss/vars.scss';
+
 .profile {
   margin: 4%;
   border-style: outset;
@@ -110,64 +129,213 @@ export default {
   }
 
   .settings {
-    .units {
-      width: 139px;
 
-      span {
-        background: #aaa;
-        position: relative;
-        display: inline-block;
-        position: relative;
-        font-size: 1.2em;
+  }
+}
+
+@mixin can-toggle-branding(
+  $can-toggle-off-color: $eastern,
+  $can-toggle-on-color: $western,
+  $can-toggle-inactive-text: rgba(white, 0.5),
+  $can-toggle-transition: cubic-bezier(0,1,0.5,1)
+) {
+
+  input[type="checkbox"] {
+
+    &[disabled] ~ label {
+      color: rgba($can-toggle-off-color, 0.5);
+    }
+
+    &:focus ~ label, &:hover ~ label {
+      .can-toggle__switch {
+        background-color: $can-toggle-off-color;
+        &:after { color: darken($can-toggle-off-color, 10%); }
       }
+    }
+    &:hover ~label { color: darken($can-toggle-off-color, 5%); }
+    &:checked {
+      ~ label {
+        &:hover { color: darken($can-toggle-on-color, 3%); }
 
-      span.active {
-        background-color: #202020;
-        color: #eee;
-      }
-
-      span:first-child {
-        z-index: 1;
-        padding-right: 16px;
-        padding-left: 4px;
-        &::after {
-          content: '';
-          position: absolute;
-          transform: skewX(-25deg);
-          height: 24px;
-          width: 16px;
-          display: block;
-          top: 0;
-          right: 0;
-          background-color: inherit;
-          transform-origin: 0 100%;
-          z-index: 0;
+        .can-toggle__switch {
+          background-color: lighten($can-toggle-on-color, 5%);
+          &:after { color: darken($can-toggle-on-color, 5%); }
         }
       }
 
-      span:not(:first-child) {
-        display: inline-block;
-        position: relative;
-        z-index: 0;
-        font-size: 1.2em;
-        padding-left: 14px;
-        padding-right: 2px;
-
-        &::after {
-          content: '';
-          position: absolute;
-          transform: skewX(-25deg);
-          height: 24px;
-          width: 12px;
-          display: block;
-          top: 0;
-          left: -4px;
-          background-color: inherit;
-          transform-origin: 0 100%;
-          z-index: 0;
+      &:focus, &:hover {
+        ~ label {
+          .can-toggle__switch {
+            background-color: $can-toggle-on-color;
+            &:after { color: darken($can-toggle-on-color, 10%); }
+          }
         }
       }
     }
   }
+
+  label {
+
+    .can-toggle__label-text { flex: 1; }
+
+    .can-toggle__switch {
+      transition: background-color 0.3s $can-toggle-transition;
+      background: lighten($can-toggle-off-color, 5%);
+      &:before { color: $can-toggle-inactive-text; }
+      &:after {
+        // Autoprefixer choked here, so making the prefixes explicit
+        -webkit-transition: -webkit-transform 0.3s $can-toggle-transition;
+        transition: transform 0.3s $can-toggle-transition;
+        color: $can-toggle-off-color;
+      }
+    }
+
+  }
+}
+
+@mixin can-toggle-appearance
+(
+  $can-toggle-width: 134px,
+  $can-toggle-height: 36px,
+  $can-toggle-border-radius: 4px,
+  $can-toggle-offset: 2px,
+  $can-toggle-label-font-size: 14px,
+  $can-toggle-switch-font-size: 12px,
+  $can-toggle-shadow: 0 3px 3px rgba(black, 0.4)
+){
+  $can-toggle-switch-width: $can-toggle-width/2;
+
+  input[type="checkbox"] {
+
+    &:focus ~ label, &:hover ~ label {
+      .can-toggle__switch {
+        &:after { box-shadow: $can-toggle-shadow; }
+      }
+    }
+
+    &:checked {
+      ~ label {
+        .can-toggle__switch {
+          &:after { transform: translate3d($can-toggle-width - ($can-toggle-switch-width + $can-toggle-offset),0,0); }
+        }
+      }
+      &:focus, &:hover {
+        ~ label {
+          .can-toggle__switch { &:after { box-shadow: $can-toggle-shadow; } }
+        }
+      }
+    }
+  }
+
+  label {
+    font-size: $can-toggle-label-font-size;
+
+    .can-toggle__switch {
+      height: $can-toggle-height;
+      flex: 0 0 $can-toggle-width;
+      border-radius: $can-toggle-border-radius;
+
+      &:before {
+        left: $can-toggle-width/2;
+        font-size: $can-toggle-switch-font-size;
+        line-height: $can-toggle-height;
+        width: $can-toggle-width/2;
+        padding: 0 12px;
+      }
+
+      &:after {
+        top: $can-toggle-offset; left: $can-toggle-offset;
+        border-radius: $can-toggle-border-radius/2;
+        width: $can-toggle-switch-width - $can-toggle-offset;
+        line-height: $can-toggle-height - ($can-toggle-offset*2);
+        font-size: $can-toggle-switch-font-size;
+      }
+
+      &:hover {
+        &:after { box-shadow: $can-toggle-shadow; }
+      }
+    }
+  }
+}
+
+
+
+.can-toggle {
+  position: relative;
+  *, *:before, *:after { box-sizing: border-box; }
+  //overflow: hidden;
+
+  input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    top: 0; left: 0;
+
+    &[disabled] ~ label {
+      pointer-events: none;
+      .can-toggle__switch { opacity: 0.4; }
+    }
+
+    &:checked {
+      ~ label {
+
+        .can-toggle__switch {
+
+          &:before {
+            content: attr(data-unchecked);
+            left: 0;
+          }
+
+          &:after {
+            content: attr(data-checked);
+          }
+        }
+      }
+
+      &:focus, &:hover {
+        ~ label {
+        }
+      }
+    }
+  }
+
+  label {
+    user-select: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .can-toggle__label-text {
+      flex: 1;
+      padding-left: 32px;
+    }
+
+    .can-toggle__switch {
+      position: relative;
+
+      &:before {
+        content: attr(data-checked);
+        position: absolute;
+        top: 0;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      &:after {
+        content: attr(data-unchecked);
+        position: absolute;
+        z-index: 5;
+        text-transform: uppercase;
+        text-align: center;
+        background: white;
+        transform: translate3d(0,0,0);
+      }
+
+    }
+
+  }
+
+  // Default values for .can-toggle class
+  @include can-toggle-branding;
+  @include can-toggle-appearance;
 }
 </style>

@@ -18,24 +18,28 @@ export default new Router({
     {
       path: '/players',
       name: 'PLayerList',
-      component: PLayerList
+      component: PLayerList,
+      meta: {title: 'players'}
     },
     {
       path: '/profile/:fullName',
       name: 'Profile',
       component: Profile,
-      props: true
+      props: true,
+      meta: {title: 'players'}
     },
     {
       path: '/teams',
       name: 'TeamList',
-      component: TeamList
+      component: TeamList,
+      meta: {title: 'teams'}
     },
     {
       path: '/teamProfile/:tricode',
       name: 'TeamProfile',
       component: TeamProfile,
-      props: true
+      props: true,
+      meta: {title: 'teams'}
     }
   ],
   mode: 'history'
