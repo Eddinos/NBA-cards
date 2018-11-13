@@ -15,10 +15,10 @@
       </h1>
       <!-- <img class="TeamProfile__photo" :src="profile.img" :alt="fullName"> -->
       <div class="TeamProfile__info">
-        <span>tricode: {{tricode}}</span><br>
         <span>city: {{profile.city}}</span><br>
         <span>conference: {{profile.conference}}</span><br>
         <span>division {{profile.division}}</span><br>
+        <img :src="profile.logo" width="100%">
       </div>
     </div>
   </div>

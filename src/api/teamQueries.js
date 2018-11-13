@@ -13,6 +13,7 @@ export default {
       conference
       city
       division
+      logo
     }
   }`
 }
