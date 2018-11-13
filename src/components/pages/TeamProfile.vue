@@ -10,9 +10,9 @@
       Couldn't find data for this team
     </div>
     <div class="TeamProfile" v-if="!loading && !errorMsg && profile">
-      <div class="TeamProfile__fullName">
-        {{tricode}}
-      </div>
+      <h1 class="TeamProfile__fullName">
+        {{ profile.fullName }}
+      </h1>
       <!-- <img class="TeamProfile__photo" :src="profile.img" :alt="fullName"> -->
       <div class="TeamProfile__info">
         <span>tricode: {{tricode}}</span><br>
@@ -70,7 +70,7 @@ export default {
 </script>
 
 <style lang="scss">
-.profile {
+.TeamProfile {
   &__fullName {
     font-size: 2em;
     font-weight: bold;
