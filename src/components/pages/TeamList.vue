@@ -33,10 +33,11 @@ export default {
   computed: {
     filteredTeams () {
       if (this.searchInput === '') return this.allTeams
-      return this.allTeams.filter(team => team.fullName.toUpperCase().includes(this.searchInput.toUpperCase()))
+      return this.allTeams
+      .filter(team => team.fullName.toUpperCase().includes(this.searchInput.toUpperCase()))
     },
     ...mapState({
-      allTeams: state => state.teams.all
+      allTeams: state => state.teams.all.sort((t1, t2) => t1.fullName.localeCompare(t2.fullName))
     })
   },
   components: {
@@ -63,10 +64,11 @@ export default {
   &__ListItem {
     border: 1px solid;
     color: #EEE;
+    text-shadow: -1px 0 0 #101010;
     &.eastern {
-      background-image: linear-gradient(-20deg, #b4c0d7, $eastern);
+      background-image: linear-gradient(-20deg, #2780a9, $eastern);
     }
-    background-image: linear-gradient(-20deg, #eab0bb, $western);
+    background-image: linear-gradient(-20deg, #ea5959, $western);
   }
 }
 </style>

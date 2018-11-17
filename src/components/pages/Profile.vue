@@ -17,24 +17,37 @@
             <div class="can-toggle__switch" data-checked="Imp" data-unchecked="Metric"></div>
           </label>
         </div>
-        <!-- <div class="units">
-          <span @click="changeSets('en-US')" :class="{active: this.preferedLanguage === 'en-US'}">Imp</span>
-          <span @click="changeSets('row')" :class="{active: this.preferedLanguage !== 'en-US'}">Metric</span>
-        </div> -->
       </div>
       <div class="profile__fullName">
         {{fullName}}
       </div>
       <img class="profile__photo" :src="profile.img" :alt="fullName">
-      <div class="profile__info">
-        <span># {{profile.jersey}}</span><br>
-        <span>Position: {{profile.position}}</span><br>
-        <span>Height ({{units.heightUnit}}): {{profile.height}}</span><br>
-        <span>Weight ({{units.weightUnit}}): {{profile.weight}}</span><br>
-<router-link :to="{ name: 'TeamProfile', params: {tricode: profile.team.tricode} }">
-        <span>Team: {{profile.team.fullName}}</span>
-        </router-link><br>
-      </div>
+      <table class="profile__info">
+        <tr>
+          <td class="profile__info__label">#</td>
+          <td class="profile__info__value">{{profile.jersey}}</td>
+        </tr>
+        <tr>
+          <td class="profile__info__label">Position:</td>
+          <td class="profile__info__value">{{profile.position}}</td>
+        </tr>
+        <tr>
+          <td class="profile__info__label">Height ({{units.heightUnit}}):</td>
+          <td class="profile__info__value">{{profile.height}}</td>
+        </tr>
+        <tr>
+          <td class="profile__info__label">Weight ({{units.weightUnit}}):</td>
+          <td class="profile__info__value">{{profile.weight}}</td>
+        </tr>
+        <tr>
+          <td class="profile__info__label">Team:</td>
+          <td class="profile__info__value">
+            <router-link :to="{ name: 'TeamProfile', params: {tricode: profile.team.tricode} }">
+              {{profile.team.fullName}}
+            </router-link>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -126,6 +139,19 @@ export default {
 
   &__info {
     font-size: 1.2em;
+    margin: auto;
+
+    &__label {
+      text-align: right;
+    }
+
+    &__value {
+      text-align: left;
+
+      a {
+        color: black;
+      }
+    }
   }
 
   .settings {

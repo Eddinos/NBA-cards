@@ -64,7 +64,8 @@ export default {
   left: 10%;
   font-size: 1.9em;
   font-weight: bold;
-  max-width: 85%
+  max-width: 85%;
+  
 }
 .allStar {
   &::after {

@@ -41,6 +41,5 @@ export default new Router({
       props: true,
       meta: {title: 'teams'}
     }
-  ],
-  mode: 'history'
+  ]
 })

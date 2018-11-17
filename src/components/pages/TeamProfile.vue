@@ -13,13 +13,21 @@
       <h1 class="TeamProfile__fullName">
         {{ profile.fullName }}
       </h1>
-      <!-- <img class="TeamProfile__photo" :src="profile.img" :alt="fullName"> -->
-      <div class="TeamProfile__info">
-        <span>city: {{profile.city}}</span><br>
-        <span>conference: {{profile.conference}}</span><br>
-        <span>division {{profile.division}}</span><br>
-        <img :src="profile.logo" width="100%">
-      </div>
+      <table class="TeamProfile__info">
+        <tr>
+          <td class="TeamProfile__info__label">city:</td>
+          <td><a :href="`https://www.google.com/maps/place/${profile.city}`" target="_blank">{{profile.city}}</a></td>
+        </tr>
+        <tr>
+          <td class="TeamProfile__info__label">conference:</td>
+          <td>{{profile.conference}}</td>
+        </tr>
+        <tr>
+          <td class="TeamProfile__info__label">division:</td>
+          <td>{{profile.division}}</td>
+        </tr>
+      </table>
+      <img :src="profile.logo" width="100%">
     </div>
   </div>
 </template>
@@ -77,6 +85,25 @@ export default {
   }
   &__photo{
 
+  }
+
+  &__info {
+    font-size: 2em;
+
+    a {
+      color: black;
+    }
+
+    &__label {
+      text-align: right;
+    }
+  }
+
+  &__city {
+
+    a {
+      color: black;
+    }
   }
 }
 </style>
