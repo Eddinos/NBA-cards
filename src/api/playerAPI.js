@@ -1,5 +1,5 @@
 import { GraphQLClient } from 'graphql-request'
-const playerEndpoint = 'http://localhost:3000/player'
+const playerEndpoint = 'https://nba-stats-uzriizuaus.now.sh/player'
 const client = new GraphQLClient(playerEndpoint)
 import queries from './playerQueries.js'
 
