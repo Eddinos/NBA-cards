@@ -16,7 +16,7 @@
       <table class="TeamProfile__info">
         <tr>
           <td class="TeamProfile__info__label">city:</td>
-          <td><a :href="`https://www.google.com/maps/place/${profile.city}`" target="_blank">{{profile.city}}</a></td>
+          <td><a :href="`https://maps.google.com/?q=${profile.city}`" target="_blank">{{profile.city}}</a></td>
         </tr>
         <tr>
           <td class="TeamProfile__info__label">conference:</td>
