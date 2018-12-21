@@ -70,7 +70,7 @@ export default {
     &::before {
       background-position: 130px 0;
       background-size: 260px;
-      background-image: url('../../assets/basketball_lines.png');
+      background-image: url('../../assets/champions.png');
     }
   }
 }

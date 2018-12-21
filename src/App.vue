@@ -30,4 +30,12 @@ body {
   background: linear-gradient(60deg,#e8e7ef,#dbdae9);
   /* background-color: #3A3A3A; */
 }
+@font-face {
+    font-family: 'Impact';
+    src: local('Impact'),
+        url('/static/fonts/impact.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+}
 </style>

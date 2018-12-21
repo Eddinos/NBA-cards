@@ -47,7 +47,7 @@ export default {
 }
 .jersey {
   position: absolute;
-  font-family: fantasy;
+  font-family: Impact;
   right: 30px;
   font-size: 7em;
   top: -28px;
