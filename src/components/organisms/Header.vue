@@ -18,6 +18,7 @@ export default {
     height: 50px;
     background: linear-gradient(180deg, #696969, #252525);
     display: flex;
+    position: relative;
 
     &__home {
       height: 100%;

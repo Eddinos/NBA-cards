@@ -62,13 +62,17 @@ export default {
   }
 
   &__ListItem {
-    border: 1px solid;
-    color: #EEE;
-    text-shadow: -1px 0 0 #101010;
+    border: 1px solid #ccc;
+    color: #101010;
+    text-shadow: -1px 0 0 #eeeeee;
     &.eastern {
-      background-image: linear-gradient(-20deg, #2780a9, $eastern);
+      background-image: linear-gradient(-20deg, #73eeff, #1EA9DC);
+      background-position: 100% 84%;
     }
-    background-image: linear-gradient(-20deg, #ea5959, $western);
+    background-image: linear-gradient(-20deg, #e63c3f, #ff817e);
+    background-size: 84% 16%;
+    background-repeat: no-repeat;
+    background-position: 00% 84%;
   }
 }
 </style>
