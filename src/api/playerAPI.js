@@ -1,5 +1,5 @@
 import { GraphQLClient } from 'graphql-request'
-const playerEndpoint = 'https://nba-stats-uzriizuaus.now.sh/player'
+const playerEndpoint = 'https://nba-cards-api.herokuapp.com/player'
 const client = new GraphQLClient(playerEndpoint)
 import queries from './playerQueries.js'
 
